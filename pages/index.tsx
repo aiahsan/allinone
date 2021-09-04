@@ -7,6 +7,7 @@ import { Toast } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Loading from "../components/loading";
+import NavBar from "../components/navbar";
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   email: Yup.string().required("Email Required").email(),
 });
@@ -68,20 +69,7 @@ export default function Index() {
 
       <div className="bg">
         <div className="container nav-barcst">
-          <div className="flex-between">
-            <div>
-              <img src="img/logo1.png" className="mr19" alt="" />
-              <img src="img/logo2.png" alt="" />
-            </div>
-            <div className="flex-between nav-inner">
-              <a className="fs18 lh21 ffr clw ">Home</a>
-              <a className="fs18 lh21 ffr clw">Features</a>
-              <a className="fs18 lh21 ffr clw">How it Works</a>
-            </div>
-            <div>
-              <button className="btn btn-sign-up fw500 fs18 lh27">Create Account</button>
-            </div>
-          </div>
+          <NavBar />
         </div>
         <div className="container tripbox">
           <div className="d-flex top-section">
@@ -91,7 +79,7 @@ export default function Index() {
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
               </p>
-              <div>
+              <div className="flex-mb">
                 <button className="btn fs18 lh27">
                   <Icons name="playstore" />
                   PlayStore
