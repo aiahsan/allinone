@@ -1,13 +1,13 @@
 import React from "react";
 import Icons from "../styles/Icons";
 import { db } from "../util/firebase";
-import { doc, setDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { Toast } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Loading from "../components/loading";
 import NavBar from "../components/navbar";
+import Footer from "../components/footer";
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   email: Yup.string().required("Email Required").email(),
 });
@@ -264,6 +264,7 @@ export default function Index() {
           );
         }}
       </Formik>
+      <Footer />
     </>
   );
 }
