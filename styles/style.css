@@ -278,7 +278,8 @@ a {
 .hero {
   margin-top: 87px;
   background-color: #000000;
-  background-image: linear-gradient(rgba(76, 124, 235, 0.76)), url("/img/r9.png");
+  background-image: linear-gradient(rgba(76, 124, 235, 0.76)),
+    url("/img/r9.png");
   background-position: center;
   background-size: cover;
   color: #ffffff;
@@ -382,6 +383,7 @@ a {
   right: 0px;
   width: 100%;
   max-width: 280px;
+  z-index: -1;
 }
 .posanimatiom {
   position: relative;
