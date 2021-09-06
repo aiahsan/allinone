@@ -4,8 +4,8 @@ export default () => {
   return (
     <Navbar collapseOnSelect expand="lg">
       <Navbar.Brand href="#home">
-        <img src="img/logo1.png" className="mr19" alt="" />
-        <img src="img/logo2.png" alt="" />
+        <img src="img/logom1.png" className="mr19 logo-nav" alt="" />
+        <img src="img/font1.png" className=" logo-nav1" alt="" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -16,7 +16,9 @@ export default () => {
             <a className="fs18 lh21 ffr clw">How it Works</a>
           </div>
           <div>
-            <button className="btn btn-sign-up fw500 fs18 lh27">Create Account</button>
+            <button className="btn btn-sign-up fw500 fs18 lh27">
+              Create Account
+            </button>
           </div>
         </div>
       </Navbar.Collapse>

@@ -13,7 +13,7 @@ function App() {
         <div className="footer-p">
           <div className="footer">
             <div className="footer-head">
-              <img src="img/logo3.png" />
+              <img className="logo-footer" src="img/logo3.png" />
             </div>
             <FooterLinks links={LinksFooter[0]} heading="Platform" />
             <FooterLinks links={LinksFooter[1]} heading="Learn" />
@@ -23,10 +23,10 @@ function App() {
                 <div className="work-text-box btnstores flex-column d-flex">
                   <button className="btn">
                     <Icons name="a1" />
-                    PlayStore
+                    Pre-Register
                   </button>
                   <button className="btn">
-                    <Icons name="a2" /> AppleStore
+                    <Icons name="a2" /> Pre-Register
                   </button>
                 </div>
               </div>
@@ -35,7 +35,9 @@ function App() {
         </div>
       </div>
       <div className="foot-btmcs ">
-        <p className="fs18 lh27">Copyright © 2021 AllinOne. All Rights Reserved.</p>
+        <p className="fs18 lh27">
+          Copyright © 2021 AllinOne. All Rights Reserved.
+        </p>
       </div>
     </>
   );

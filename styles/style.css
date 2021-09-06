@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -80,7 +81,9 @@ a {
 .lh45 {
   line-height: 45px;
 }
-
+.fs-16 {
+  font-size: 16px;
+}
 .fs18 {
   font-size: 18px;
 }
@@ -217,7 +220,7 @@ a {
   background-color: #3fb2f2;
 }
 .bg-svg-3 {
-  background-color: #ffc107;
+  background-color: #262fc0;
 }
 .fearture-box {
   background-color: #ffffff;
@@ -515,6 +518,29 @@ a {
   align-items: center;
   color: white;
 }
+.mx-imgplay {
+  max-width: 640px;
+}
+.logo-footer {
+  max-width: 200px;
+}
+.sm-icon svg {
+  width: 65px;
+}
+.logo-nav {
+  max-width: 50px;
+  image-rendering: -webkit-optimize-contrast;
+}
+.logo-nav1 {
+  max-width: 200px;
+  image-rendering: -webkit-optimize-contrast;
+}
+.logo-font {
+  font-family: "Gilroy-ExtraBold";
+  font-size: 1.8rem;
+  word-spacing: 0rem;
+}
+
 @media (max-width: 519px) {
   .btnstores button {
     margin-right: 0px;
