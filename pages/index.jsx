@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Icons from "../styles/Icons";
 import { db } from "../util/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -10,6 +10,16 @@ import NavBar from "../components/navbar";
 import Footer from "../components/footer";
 import LightSpeed from "react-reveal/LightSpeed";
 import Fade from "react-reveal/Fade";
+import Modal from "../components/modal";
+import {
+  Link,
+  DirectLink,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   email: Yup.string().required("Email Required").email(),
 });
@@ -17,7 +27,10 @@ export default function Index() {
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   function onKeyDown(keyEvent) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault();
@@ -75,158 +88,169 @@ export default function Index() {
 
       <div className="bg">
         <div className="container nav-barcst">
-          <NavBar />
+          <NavBar
+            show={show}
+            handleClose={handleClose}
+            handleShow={handleShow}
+          />
         </div>
-        <div className="container tripbox">
-          <div className="d-flex top-section">
-            <div>
-              <Fade top opposite>
-                <h1 className="fw600 fs60 lh90">
-                  Get the new AllinOne App for your next trip
-                </h1>
-              </Fade>
-              <Fade right opposite>
+        <Element name="home">
+          <div className="container tripbox">
+            <div className="d-flex top-section">
+              <div>
+                <Fade top opposite>
+                  <h1 className="fw600 fs60 lh90">
+                    Get the new AllinOne App for your next trip
+                  </h1>
+                </Fade>
+                <Fade right opposite>
+                  <p className="fs16 lh24">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type
+                  </p>
+                </Fade>
+
+                <div className="flex-mb">
+                  <button className="btn fs-16 lh27">Pre-Register</button>
+                  {/* <button className="btn fs-16 lh27">
+                    <Icons name="playstore" />
+                    Pre-Register
+                  </button>
+                  <button className="btn fs-16 lh27">
+                    <Icons name="appstore" />
+                    Pre-Register
+                  </button> */}
+                </div>
+              </div>
+              <div>
+                <img className="no-dsp" src="img/m1.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </Element>
+      </div>
+      <Element name="features">
+        <section className="container features">
+          <h1 className="fw600 fs50 lh75"> App Features</h1>
+          <div className="flex-between w-100">
+            <Fade left>
+              <div className="fearture-box">
+                <div className="svg-p bg-svg-1 ">
+                  <Icons name="b1" />
+                </div>
+                <h2 className="fw600 fs30 lh45">Booking</h2>
                 <p className="fs16 lh24">
                   Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type
+                  typesetting indus. Lorem Ipsum{" "}
                 </p>
-              </Fade>
-
-              <div className="flex-mb">
-                <button className="btn fs-16 lh27">
-                  <Icons name="playstore" />
-                  Pre-Register
-                </button>
-                <button className="btn fs-16 lh27">
-                  <Icons name="appstore" />
-                  Pre-Register
-                </button>
               </div>
+            </Fade>
+
+            <Fade bottom>
+              <div className="fearture-box mr-no-0">
+                <div className="svg-p bg-svg-2 ">
+                  <Icons name="b2" />
+                </div>
+                <h2 className="fw600 fs30 lh45">Explore</h2>
+                <p className="fs16 lh24">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting indus. Lorem Ipsum{" "}
+                </p>
+              </div>
+            </Fade>
+            <Fade right>
+              <div className="fearture-box">
+                <div className="svg-p bg-svg-3 ">
+                  <Icons name="b3" />
+                </div>
+                <h2 className="fw600 fs30 lh45">Customer Support</h2>
+                <p className="fs16 lh24">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting indus. Lorem Ipsum{" "}
+                </p>
+              </div>
+            </Fade>
+          </div>
+        </section>
+      </Element>
+      <Element name="howitwork">
+        <section className="container features howitwork">
+          <Fade>
+            {" "}
+            <h1 className="fw600 fs50 lh75"> How it Works</h1>
+          </Fade>
+
+          <div className="d-flex w-100 howitwork-flex ">
+            <div className="howitwork-inner">
+              <img src="img/vpng.jpg" className="mx-imgplay w-100" />
             </div>
             <div>
-              <img className="no-dsp" src="img/m1.png" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <section className="container features">
-        <h1 className="fw600 fs50 lh75"> App Features</h1>
-        <div className="flex-between w-100">
-          <Fade left>
-            <div className="fearture-box">
-              <div className="svg-p bg-svg-1 ">
-                <Icons name="b1" />
-              </div>
-              <h2 className="fw600 fs30 lh45">Booking</h2>
-              <p className="fs16 lh24">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                indus. Lorem Ipsum{" "}
-              </p>
-            </div>
-          </Fade>
-
-          <Fade bottom>
-            <div className="fearture-box mr-no-0">
-              <div className="svg-p bg-svg-2 ">
-                <Icons name="b2" />
-              </div>
-              <h2 className="fw600 fs30 lh45">Explore</h2>
-              <p className="fs16 lh24">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                indus. Lorem Ipsum{" "}
-              </p>
-            </div>
-          </Fade>
-          <Fade right>
-            <div className="fearture-box">
-              <div className="svg-p bg-svg-3 ">
-                <Icons name="b3" />
-              </div>
-              <h2 className="fw600 fs30 lh45">Customer Support</h2>
-              <p className="fs16 lh24">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                indus. Lorem Ipsum{" "}
-              </p>
-            </div>
-          </Fade>
-        </div>
-      </section>
-
-      <section className="container features howitwork">
-        <Fade>
-          {" "}
-          <h1 className="fw600 fs50 lh75"> How it Works</h1>
-        </Fade>
-
-        <div className="d-flex w-100 howitwork-flex ">
-          <div className="howitwork-inner">
-            <img src="img/vpng.jpg" className="mx-imgplay w-100" />
-          </div>
-          <div>
-            <Fade left>
-              {" "}
-              <div className="d-flex work-text-box  ">
-                <div className="mr-20 sm-icon">
-                  <Icons name="download" />
-                </div>
-                <div>
-                  <h2 className="fw-500 fs30 lh45">Download the App</h2>
-                  <div className="btnstores">
-                    <button className="btn">
-                      <Icons name="a1" />
-                      Pre-Register
-                    </button>
-                    <button className="btn">
-                      <Icons name="a2" /> Pre-Register
-                    </button>
+              <Fade left>
+                {" "}
+                <div className="d-flex work-text-box  ">
+                  <div className="mr-20 sm-icon">
+                    <Icons name="download" />
+                  </div>
+                  <div>
+                    <h2 className="fw-500 fs30 lh45">Download the App</h2>
+                    <div className="btnstores">
+                      <button className="btn fs-16 lh27">Pre-Register</button>
+                      {/* <button className="btn">
+                        <Icons name="a1" />
+                        Pre-Register
+                      </button>
+                      <button className="btn">
+                        <Icons name="a2" /> Pre-Register
+                      </button> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Fade>
-            <Fade left>
-              {" "}
-              <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
-                <div className="mr-20">
-                  <Icons name="ntrip" />
+              </Fade>
+              <Fade left>
+                {" "}
+                <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
+                  <div className="mr-20">
+                    <Icons name="ntrip" />
+                  </div>
+                  <div>
+                    <h2 className="fw-500 fs30 lh45">Find your next trip</h2>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="fw-500 fs30 lh45">Find your next trip</h2>
+              </Fade>
+              <Fade left>
+                {" "}
+                <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
+                  <div className="mr-20">
+                    <Icons name="card" />
+                  </div>
+                  <div>
+                    <h2 className="fw-500 fs30 lh45">Book within the App</h2>
+                  </div>
                 </div>
-              </div>
-            </Fade>
-            <Fade left>
-              {" "}
-              <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
-                <div className="mr-20">
-                  <Icons name="card" />
+              </Fade>
+              <Fade left>
+                {" "}
+                <div className="d-flex align-items-center work-text-box mt-40 sm-icon ">
+                  <div className="mr-20">
+                    <Icons name="hour" />
+                  </div>
+                  <div>
+                    <h2 className="fw-500 fs30 lh45">Enjoy your trip</h2>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="fw-500 fs30 lh45">Book within the App</h2>
-                </div>
-              </div>
-            </Fade>
-            <Fade left>
-              {" "}
-              <div className="d-flex align-items-center work-text-box mt-40 sm-icon ">
-                <div className="mr-20">
-                  <Icons name="hour" />
-                </div>
-                <div>
-                  <h2 className="fw-500 fs30 lh45">Enjoy your trip</h2>
-                </div>
-              </div>
-            </Fade>
+              </Fade>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="hero">
-        <h1 className="fw500 fs60 lh90">
-          Explore Dubai, London, Mykonos, Ibiza{" "}
-        </h1>
-      </div>
+        <div className="hero">
+          <h1 className="fw500 fs60 lh90">
+            Explore Dubai, London, Mykonos, Ibiza{" "}
+          </h1>
+        </div>
+      </Element>
       <section className="features2">
         <div className="flex-between">
           <img className="w-img-cst" src="img/m2.png" />
@@ -337,6 +361,12 @@ export default function Index() {
         }}
       </Formik>
       <Footer />
+      <Modal
+        showmessage={showmessage}
+        show={show}
+        handleClose={handleClose}
+        handleShow={handleShow}
+      />
     </>
   );
 }

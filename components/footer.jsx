@@ -21,13 +21,14 @@ function App() {
               <h4 className="foter-sub-head">Download</h4>
               <div className="footer-sub-area">
                 <div className="work-text-box btnstores flex-column d-flex">
-                  <button className="btn">
+                  <button className="btn fs-16 lh27">Pre-Register</button>
+                  {/* <button className="btn">
                     <Icons name="a1" />
                     Pre-Register
                   </button>
                   <button className="btn">
                     <Icons name="a2" /> Pre-Register
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

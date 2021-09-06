@@ -374,12 +374,37 @@ a {
   left: -41px;
   z-index: -4;
 }
+.modal-main img {
+  max-width: 300px;
+}
+.modal-main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .pos-res1 {
   position: relative;
+  display: none;
+}
+.no-bg {
+  background-color: transparent !important;
 }
 .pos-res2 {
   position: relative;
   top: -130px;
+  display: none;
+}
+.create-account button {
+  height: 44.49px;
+}
+.create-account svg {
+  color: #39425d;
+}
+.create-account .inputbox {
+  border: 1px solid #39425d;
+  padding: 5px 20px;
+  margin-bottom: 10px;
 }
 .pos-abs2 {
   position: absolute;
