@@ -12,6 +12,7 @@ import LightSpeed from "react-reveal/LightSpeed";
 import Fade from "react-reveal/Fade";
 import Modal from "../components/modal";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { useMediaQuery } from "react-responsive";
 
 // const bcrypt = require("bcryptjs");
 import { query, where, getDocs } from "firebase/firestore";
@@ -29,6 +30,9 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
   email: Yup.string().required("Email Required").email(),
 });
 export default function Index() {
+  const ismobile = useMediaQuery({
+    query: "(max-width: 768px)",
+  });
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
@@ -171,12 +175,12 @@ export default function Index() {
           <div className="container tripbox">
             <div className="d-flex top-section">
               <div>
-                <Fade top opposite>
+                <Fade top={!ismobile ? true : false} opposite>
                   <h1 className="fw600 fs60 lh90">
                     Coming Soon -AllinOne App Reimagening Travel
                   </h1>
                 </Fade>
-                <Fade left>
+                <Fade left={!ismobile ? true : false}>
                   <p className="fs16 lh24">
                     Bespoke Travel is only one click away with the upcoming
                     AllinOne APP. Be ready for the Adventure of your Lifetime
@@ -214,7 +218,7 @@ export default function Index() {
         <section className="container features">
           <h1 className="fw600 fs50 lh75"> App Features</h1>
           <div className="flex-between w-100">
-            <Fade left>
+            <Fade left={!ismobile ? true : false}>
               <div className="fearture-box">
                 <div className="svg-p bg-svg-1 ">
                   <Icons name="b1" />
@@ -227,7 +231,7 @@ export default function Index() {
               </div>
             </Fade>
 
-            <Fade bottom>
+            <Fade bottom={!ismobile ? true : false}>
               <div className="fearture-box mr-no-0">
                 <div className="svg-p bg-svg-2 ">
                   <Icons name="b2" />
@@ -239,7 +243,7 @@ export default function Index() {
                 </p>
               </div>
             </Fade>
-            <Fade right>
+            <Fade right={!ismobile ? true : false}>
               <div className="fearture-box">
                 <div className="svg-p bg-svg-3 ">
                   <Icons name="b3" />
@@ -266,7 +270,7 @@ export default function Index() {
               <img src="img/vpng.jpg" className="mx-imgplay w-100" />
             </div>
             <div>
-              <Fade left>
+              <Fade left={!ismobile ? true : false}>
                 {" "}
                 <div className="d-flex work-text-box  ">
                   <div className="mr-20 sm-icon">
@@ -293,7 +297,7 @@ export default function Index() {
                   </div>
                 </div>
               </Fade>
-              <Fade left>
+              <Fade left={!ismobile ? true : false}>
                 {" "}
                 <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
                   <div className="mr-20">
@@ -304,7 +308,7 @@ export default function Index() {
                   </div>
                 </div>
               </Fade>
-              <Fade left>
+              <Fade left={!ismobile ? true : false}>
                 {" "}
                 <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
                   <div className="mr-20">
@@ -315,7 +319,7 @@ export default function Index() {
                   </div>
                 </div>
               </Fade>
-              <Fade left>
+              <Fade left={!ismobile ? true : false}>
                 {" "}
                 <div className="d-flex align-items-center work-text-box mt-40 sm-icon ">
                   <div className="mr-20">
@@ -340,7 +344,7 @@ export default function Index() {
         <div className="flex-between">
           <img className="w-img-cst" src="img/m2.png" />
           <div className="f-box">
-            <LightSpeed left>
+            <Fade left={!ismobile ? true : false}>
               <div className="flex-between">
                 <div className="jdkf23">
                   <Icons name="e1" />
@@ -351,14 +355,14 @@ export default function Index() {
                   your location
                 </h2>
               </div>
-            </LightSpeed>
-            <LightSpeed right opposite delay={800}>
+            </Fade>
+            <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
                 <h2 className="fw600 fs20 lh30">Best Price Guarantee </h2>
                 <Icons name="e1" />
               </div>
-            </LightSpeed>
-            <LightSpeed left delay={800}>
+            </Fade>
+            <Fade left={!ismobile ? true : false} delay={800}>
               <div className="flex-between mt-100">
                 <div className="jdkf23">
                   <Icons name="e1" />
@@ -367,15 +371,15 @@ export default function Index() {
                   Available in: Dubai, London, Ibiza
                 </h2>
               </div>
-            </LightSpeed>
-            <LightSpeed right opposite delay={800}>
+            </Fade>
+            <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
                 <h2 className="fw600 fs20 lh30">
                   Refer friends and earn up to 10%{" "}
                 </h2>
                 <Icons name="e1" />
               </div>
-            </LightSpeed>
+            </Fade>
           </div>
           <img className="w-img-cst m3img" src="img/m3.png" />
         </div>
