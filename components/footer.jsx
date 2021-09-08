@@ -15,8 +15,8 @@ function App({ setShow }) {
             <div className="footer-head">
               <img className="logo-footer" src="img/logo3.png" />
             </div>
-            <FooterLinks links={LinksFooter[0]} heading="Platform" />
-            <FooterLinks links={LinksFooter[1]} heading="Learn" />
+            <FooterLinks links={LinksFooter[0]} heading="Company" />
+            <FooterLinks links={LinksFooter[1]} heading="App" />
             <div>
               <h4 className="foter-sub-head">Download</h4>
               <div className="footer-sub-area">
