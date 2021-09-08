@@ -173,15 +173,15 @@ export default function Index() {
               <div>
                 <Fade top opposite>
                   <h1 className="fw600 fs60 lh90">
-                    Get the new AllinOne App for your next trip
+                    Coming Soon -AllinOne App Reimagening Travel
                   </h1>
                 </Fade>
                 <Fade left>
                   <p className="fs16 lh24">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type
+                    Bespoke Travel is only one click away with the upcoming
+                    AllinOne APP. Be ready for the Adventure of your Lifetime
+                    and on top of that benefit from our Referral System.
+                    Pre-Register now and get 10% off your first booking
                   </p>
                 </Fade>
 
@@ -221,8 +221,8 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">Booking</h2>
                 <p className="fs16 lh24">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting indus. Lorem Ipsum{" "}
+                  Easily make a booking for your favorite hotel, restaurant or
+                  just contact our VIP-Support and get a tailored offer.
                 </p>
               </div>
             </Fade>
@@ -234,8 +234,8 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">Explore</h2>
                 <p className="fs16 lh24">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting indus. Lorem Ipsum{" "}
+                  Within the App you will be able to explore activities,
+                  restaurants and the best hotels nearby with just one click.
                 </p>
               </div>
             </Fade>
@@ -246,8 +246,8 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">Customer Support</h2>
                 <p className="fs16 lh24">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting indus. Lorem Ipsum{" "}
+                  Our customer support agents are here for you whenever you need
+                  them. Get ready for first class service.
                 </p>
               </div>
             </Fade>
@@ -408,8 +408,8 @@ export default function Index() {
                 </div>
                 <div className="flex-between flex-column">
                   <h1 className="fw600 fs33 lh54">
-                    Subscribe to get information, latest news and other
-                    interesting offers about ALLinOne
+                    Subscribe to stay uptodate and never miss out on exclusive
+                    deals from AllinOne
                   </h1>
                   <div className="sb-box flex-between w-100">
                     <div className="flex-between inputbox">

@@ -3,7 +3,6 @@ export const LinksFooter = [
   [
     { name: "About", hasSpan: false, span: null, href: "" },
     { name: "Careers", hasSpan: false, span: null, href: "" },
-    { name: "Mobile", hasSpan: false, span: null, href: "" },
   ],
   [
     { name: "Feature", hasSpan: false, span: null, href: "" },
