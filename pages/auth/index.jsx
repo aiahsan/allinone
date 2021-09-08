@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { db } from "../../util/firebase";
-import { IoMdMail, IoIosCall } from "react-icons/Io";
+import { IoMdMail, IoIosCall } from "react-icons/io";
 import { Formik, Form } from "formik";
 import { RiKey2Fill } from "react-icons/ri";
 import Loading from "../../components/loading";
