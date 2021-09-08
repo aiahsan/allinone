@@ -11,6 +11,9 @@ import Footer from "../components/footer";
 import LightSpeed from "react-reveal/LightSpeed";
 import Fade from "react-reveal/Fade";
 import Modal from "../components/modal";
+// const bcrypt = require("bcryptjs");
+import { query, where, getDocs } from "firebase/firestore";
+
 import {
   Link,
   DirectLink,
@@ -27,6 +30,7 @@ export default function Index() {
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
+  const [showAnimation1, setshowAnimation1] = React.useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -61,6 +65,56 @@ export default function Index() {
         });
     })();
   };
+  const adduser = async ({ email, name, password, phone }) => {
+    const q = query(collection(db, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    const q1 = query(collection(db, "users"), where("phone", "==", phone));
+    const querySnapshot1 = await getDocs(q1);
+
+    if (querySnapshot.docs.length > 0 || querySnapshot1.docs.length > 0) {
+      setshowmessage(true);
+      if (querySnapshot.docs.length > 0) {
+        setmessage("Email already in use");
+      }
+      if (querySnapshot1.docs.length > 0) {
+        setmessage("Phone Number already in use");
+      }
+      if (querySnapshot1.docs.length > 0 && querySnapshot.docs.length > 0) {
+        setmessage("Email and Phone Number already in use");
+      }
+      setshowAnimation1(false);
+      setTimeout(() => {
+        setshowmessage(false);
+      }, 4000);
+    } else {
+      (async () => {
+        setshowAnimation1(true);
+        const docRef = await addDoc(collection(db, "users"), {
+          email,
+          name,
+          password,
+          phone,
+        })
+          .then((x) => {
+            setmessage("User Registerd");
+            setshowmessage(true);
+            setshowAnimation1(false);
+            setShow(false);
+            setTimeout(() => {
+              setshowmessage(false);
+            }, 3000);
+          })
+          .catch((x) => {
+            setmessage("Something wen't wrong try agian");
+            setshowmessage(true);
+            setshowAnimation1(false);
+            setTimeout(() => {
+              setshowmessage(false);
+            }, 3000);
+          });
+      })();
+    }
+  };
   return (
     <>
       {showmessage ? (
@@ -69,7 +123,7 @@ export default function Index() {
             position: "fixed",
             top: 10,
             right: 10,
-            zIndex: 1,
+            zIndex: 10000,
           }}
         >
           <Toast.Header onClick={() => setshowmessage(false)}>
@@ -113,7 +167,13 @@ export default function Index() {
                 </Fade>
 
                 <div className="flex-mb">
-                  <button className="btn fs-16 lh27">Pre-Register</button>
+                  <button
+                    onClick={() => setShow(true)}
+                    className="btn btn-sign-up fw500 fs18 lh27"
+                  >
+                    Pre-Register
+                  </button>
+                  {/* <button className="btn fs-16 lh27">Pre-Register</button> */}
                   {/* <button className="btn fs-16 lh27">
                     <Icons name="playstore" />
                     Pre-Register
@@ -196,7 +256,13 @@ export default function Index() {
                   <div>
                     <h2 className="fw-500 fs30 lh45">Download the App</h2>
                     <div className="btnstores">
-                      <button className="btn fs-16 lh27">Pre-Register</button>
+                      <button
+                        onClock={() => setShow(true)}
+                        className="btn btn-sign-up  btn-sign-up1 fw500 fs18 lh27"
+                      >
+                        Pre-Register
+                      </button>
+                      {/* <button className="btn fs-16 lh27">Pre-Register</button> */}
                       {/* <button className="btn">
                         <Icons name="a1" />
                         Pre-Register
@@ -360,12 +426,14 @@ export default function Index() {
           );
         }}
       </Formik>
-      <Footer />
+      <Footer setShow={setShow} />
       <Modal
         showmessage={showmessage}
         show={show}
         handleClose={handleClose}
         handleShow={handleShow}
+        adduser={adduser}
+        showAnimation1={showAnimation1}
       />
     </>
   );

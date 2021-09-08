@@ -4,6 +4,8 @@ import { FaUser } from "react-icons/fa";
 import { IoMdMail, IoIosCall } from "react-icons/Io";
 import { Formik, Form } from "formik";
 import { RiKey2Fill } from "react-icons/ri";
+import Loading from "./loading";
+
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
   email: Yup.string().required("Required").email(),
@@ -19,7 +21,7 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
     .required("Required")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
-export default ({ show, handleClose, handleShow, showAnimation }) => {
+export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -28,11 +30,15 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
             <img src="img/logo3.png" />
             <Formik
               initialValues={{
+                name: "",
                 email: "",
+                phone: "",
+                password: "",
+                confirmPassword: "",
               }}
               validationSchema={DisplayingErrorMessagesSchema}
               onSubmit={async (values, { setSubmitting }) => {
-                add(values.email);
+                adduser(values);
               }}
             >
               {({
@@ -129,7 +135,7 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                             <input
                               {...getFieldProps("password")}
                               placeholder="Password"
-                              type="text"
+                              type="password"
                             />
                           </div>
                         </div>
@@ -154,7 +160,7 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                             <input
                               {...getFieldProps("confirmPassword")}
                               placeholder="Confirm Password"
-                              type="text"
+                              type="password"
                             />
                           </div>
                         </div>
@@ -178,7 +184,14 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                           onClick={() => submitForm()}
                           className="btn fw600 fs17 lh23"
                         >
-                          {showAnimation == true ? <Loading /> : " Subscribe"}
+                          {showAnimation1 == true ? (
+                            <div style={{ position: "relative", top: -21 }}>
+                              {" "}
+                              <Loading />
+                            </div>
+                          ) : (
+                            " Subscribe"
+                          )}
                         </button>
                       </div>
                     </section>

@@ -115,6 +115,12 @@ a {
   font-size: 60px;
 }
 
+.flex-login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   max-width: 1293px !important;
   margin: auto;
@@ -138,7 +144,11 @@ a {
   background: #ffffff;
   border-radius: 9px;
   pad: 17px 21px 16px 36px;
-  color: #302edc;
+  color: #302edc !important;
+}
+.work-text-box .btn-sign-up {
+  background-color: #302edc;
+  color: white !important;
 }
 .clw {
   color: white;
@@ -609,6 +619,9 @@ a {
   .top-section h1 {
     line-height: 2.9rem !important;
     font-size: 2.6rem !important;
+  }
+  .logo-nav {
+    width: 50px;
   }
   .navbar-brand img {
     max-width: 148px;

@@ -4,7 +4,7 @@ import { LinksFooter } from "./links";
 import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { SiTwitter } from "react-icons/si";
 import Icons from "../styles/Icons";
-function App() {
+function App({ setShow }) {
   const [links, setLinks] = React.useState([]);
 
   return (
@@ -21,7 +21,12 @@ function App() {
               <h4 className="foter-sub-head">Download</h4>
               <div className="footer-sub-area">
                 <div className="work-text-box btnstores flex-column d-flex">
-                  <button className="btn fs-16 lh27">Pre-Register</button>
+                  <button
+                    className="btn fs-16 lh27"
+                    onCick={() => setShow(true)}
+                  >
+                    Pre-Register
+                  </button>
                   {/* <button className="btn">
                     <Icons name="a1" />
                     Pre-Register
