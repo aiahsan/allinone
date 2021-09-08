@@ -125,7 +125,6 @@ export default function Index() {
 
         if (doc) {
           doc.style.display = "none";
-          document.body.width = "width: 99.99%;";
         }
       }
     };
