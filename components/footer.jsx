@@ -23,7 +23,7 @@ function App({ setShow }) {
                 <div className="work-text-box btnstores flex-column d-flex">
                   <button
                     className="btn fs-16 lh27"
-                    onCick={() => setShow(true)}
+                    onClick={() => setShow(true)}
                   >
                     Pre-Register
                   </button>

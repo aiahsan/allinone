@@ -11,6 +11,8 @@ import Footer from "../components/footer";
 import LightSpeed from "react-reveal/LightSpeed";
 import Fade from "react-reveal/Fade";
 import Modal from "../components/modal";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+
 // const bcrypt = require("bcryptjs");
 import { query, where, getDocs } from "firebase/firestore";
 
@@ -41,31 +43,32 @@ export default function Index() {
     }
   }
   const add = async (email) => {
-    (async () => {
-      setshowAnimation(true);
-      // Add a new document with a generated id.
-      const docRef = await addDoc(collection(db, "emails"), {
-        email: email,
+    console.log("test");
+    setshowAnimation(true);
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "emails"), {
+      email: email,
+    })
+      .then((x) => {
+        setmessage("Email Registerd");
+        setshowmessage(true);
+        setshowAnimation(false);
+        setTimeout(() => {
+          setshowmessage(false);
+        }, 3000);
       })
-        .then((x) => {
-          setmessage("Email Registerd");
-          setshowmessage(true);
-          setshowAnimation(false);
-          setTimeout(() => {
-            setshowmessage(false);
-          }, 3000);
-        })
-        .catch((x) => {
-          setmessage("Something wen't wrong try agian");
-          setshowmessage(true);
-          setshowAnimation(false);
-          setTimeout(() => {
-            setshowmessage(false);
-          }, 3000);
-        });
-    })();
+      .catch((x) => {
+        setmessage("Something wen't wrong try agian");
+        setshowmessage(true);
+        setshowAnimation(false);
+        setTimeout(() => {
+          setshowmessage(false);
+        }, 3000);
+      });
   };
   const adduser = async ({ email, name, password, phone }) => {
+    setshowAnimation1(true);
+
     const q = query(collection(db, "users"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
     const q1 = query(collection(db, "users"), where("phone", "==", phone));
@@ -88,7 +91,6 @@ export default function Index() {
       }, 4000);
     } else {
       (async () => {
-        setshowAnimation1(true);
         const docRef = await addDoc(collection(db, "users"), {
           email,
           name,
@@ -115,6 +117,19 @@ export default function Index() {
       })();
     }
   };
+
+  React.useEffect(() => {
+    document.onreadystatechange = () => {
+      if (document.readyState === "complete") {
+        const doc = document.getElementById("prl");
+
+        if (doc) {
+          doc.style.display = "none";
+          document.body.width = "width: 99.99%;";
+        }
+      }
+    };
+  }, []);
   return (
     <>
       {showmessage ? (
@@ -139,6 +154,11 @@ export default function Index() {
       ) : (
         <></>
       )}
+      <div id="prl" class="preload">
+        <div class="pulse">
+          <img src="img/logom1.png" className="mr19 logo-nav" alt="" />
+        </div>
+      </div>
 
       <div className="bg">
         <div className="container nav-barcst">
@@ -157,7 +177,7 @@ export default function Index() {
                     Get the new AllinOne App for your next trip
                   </h1>
                 </Fade>
-                <Fade right opposite>
+                <Fade left>
                   <p className="fs16 lh24">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
@@ -257,7 +277,7 @@ export default function Index() {
                     <h2 className="fw-500 fs30 lh45">Download the App</h2>
                     <div className="btnstores">
                       <button
-                        onClock={() => setShow(true)}
+                        onClick={() => setShow(true)}
                         className="btn btn-sign-up  btn-sign-up1 fw500 fs18 lh27"
                       >
                         Pre-Register
