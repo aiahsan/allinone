@@ -4,6 +4,7 @@ import {
   AiOutlineUser,
   AiOutlineUnorderedList,
   AiOutlineMessage,
+  AiOutlineMail,
 } from "react-icons/ai";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -179,7 +180,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                 <div className="flex-between flex-column">
                   <div className="sb-box flex-between w-100 flex-column">
                     <div className="flex-between inputbox">
-                      <Icons name="mail" />
+                      <AiOutlineMail color="black" />
                       <input
                         {...getFieldProps("email")}
                         placeholder="Your email"
