@@ -339,15 +339,22 @@ a {
   border-radius: 129px 20px 20px 20px;
   padding: 7% 0px 5% 0px;
 }
-.inputbox input {
+.inputbox input,
+.inputbox textarea {
   width: 100%;
 }
-.inputbox input {
+.inputbox input,
+.inputbox textarea {
   border: none;
   outline: none;
 }
+.inputbox textarea {
+  height: 103px !important;
+}
 .inputbox input,
-.inputbox input::placeholder {
+.inputbox input::placeholder,
+.inputbox textarea,
+.inputbox textarea::placeholder {
   font-size: 14px;
   line-height: 17px;
   height: 36px;
@@ -914,4 +921,50 @@ a {
     opacity: 1;
     filter: alpha(opacity=100);
   }
+}
+
+.quotebox {
+  background-color: #2730c0;
+  max-width: 639px !important;
+  margin: auto;
+  color: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 69px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 127px;
+}
+.quotebox button {
+  background-color: white;
+  margin-top: 20px;
+}
+.quotebox .sb-box {
+  margin-top: 3%;
+}
+
+.quotebox .dropdown button,
+.quotebox .dropdown button:hover,
+.quotebox .dropdown button:active,
+.quotebox .dropdown button:focus {
+  margin: 0px;
+  width: 100%;
+  color: black !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+.quotebox .dropdown {
+  width: 100%;
+}
+.quotebox .inputbox {
+  padding: 6px 34px;
+}
+.dropdown-menu.show {
+  width: 100%;
+}
+
+.quotebox .posanimatiom {
+  width: 69.61px;
+  height: 37px;
+  position: initial !important;
 }

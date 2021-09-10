@@ -11,9 +11,8 @@ import Footer from "../components/footer";
 import LightSpeed from "react-reveal/LightSpeed";
 import Fade from "react-reveal/Fade";
 import Modal from "../components/modal";
-import Document, { Html, Head, Main, NextScript } from "next/document";
 import { useMediaQuery } from "react-responsive";
-
+import Quote from "../components/quote";
 // const bcrypt = require("bcryptjs");
 import { query, where, getDocs } from "firebase/firestore";
 
@@ -384,6 +383,8 @@ export default function Index() {
           <img className="w-img-cst m3img" src="img/m3.png" />
         </div>
       </section>
+      <Quote setmessage={setmessage} setshowmessage={setshowmessage} />
+
       <Formik
         initialValues={{
           email: "",
@@ -426,10 +427,7 @@ export default function Index() {
                     </div>
                     <div>
                       {" "}
-                      <button
-                        onClick={() => submitForm()}
-                        className="btn fw600 fs17 lh23"
-                      >
+                      <button type="submit" className="btn fw600 fs17 lh23">
                         {showAnimation == true ? <Loading /> : " Subscribe"}
                       </button>
                     </div>
