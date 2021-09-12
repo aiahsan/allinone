@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import * as Yup from "yup";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaUserFriends } from "react-icons/fa";
 import { IoMdMail, IoIosCall } from "react-icons/io";
 import { Formik, Form } from "formik";
 import { RiKey2Fill } from "react-icons/ri";
@@ -35,6 +35,7 @@ export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
                 phone: "",
                 password: "",
                 confirmPassword: "",
+                referral: "",
               }}
               validationSchema={DisplayingErrorMessagesSchema}
               onSubmit={async (values, { setSubmitting }) => {
@@ -174,6 +175,30 @@ export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
                             }}
                           >
                             {errors.confirmPassword}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-between flex-column">
+                        <div className="w-100">
+                          <div className="flex-between inputbox">
+                            <FaUserFriends />
+                            <input
+                              {...getFieldProps("referral")}
+                              placeholder="Referral Name"
+                              type="text"
+                            />
+                          </div>
+                        </div>
+
+                        {touched.referral && errors.referral && (
+                          <div
+                            style={{
+                              color: "red",
+                              marginTop: 10,
+                              maxWidth: 320,
+                            }}
+                          >
+                            {errors.referral}
                           </div>
                         )}
                       </div>

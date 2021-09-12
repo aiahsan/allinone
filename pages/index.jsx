@@ -69,7 +69,7 @@ export default function Index() {
         }, 3000);
       });
   };
-  const adduser = async ({ email, name, password, phone }) => {
+  const adduser = async ({ email, name, password, phone, referral }) => {
     setshowAnimation1(true);
 
     const q = query(collection(db, "users"), where("email", "==", email));
@@ -99,6 +99,7 @@ export default function Index() {
           name,
           password,
           phone,
+          referral,
         })
           .then((x) => {
             setmessage("User Registerd");
@@ -178,6 +179,7 @@ export default function Index() {
                   <h1 className="fw600 fs60 lh90">
                     Coming Soon -AllinOne App Reimagening Travel
                   </h1>
+                  <h4>Pre-Register and get 250€ off your first booking!</h4>
                 </Fade>
                 <Fade left={!ismobile ? true : false}>
                   <p className="fs16 lh24">
