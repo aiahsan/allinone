@@ -8,6 +8,8 @@ import {
 } from "react-icons/ai";
 import { collection, addDoc } from "firebase/firestore";
 
+import { useTranslation, Trans } from "react-i18next";
+
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { Formik, Form } from "formik";
 import { DropdownButton, Dropdown } from "react-bootstrap";
@@ -57,6 +59,11 @@ export default function Quote({ setmessage, setshowmessage }) {
         });
     })();
   };
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <div>
       <Formik
@@ -91,7 +98,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                   <img className="pos-abs2" src="img/mr.png" />
                 </div>
                 <h1 className="fw600 fs33 lh54 text-center">
-                  Experience First Class Service
+                {t("c1")}
                 </h1>
                 <div className="flex-between flex-column">
                   <div className="sb-box flex-between w-100 flex-column">
@@ -101,7 +108,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                         id="dropdown-basic-button"
                         title={
                           values.interested == ""
-                            ? "Interested in:"
+                            ?   t("c2")
                             : values.interested
                         }
                       >
@@ -162,7 +169,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                       <AiOutlineUser color="black" />
                       <input
                         {...getFieldProps("name")}
-                        placeholder="Your Name"
+                        placeholder={t("c3")}
                         type="text"
                       />
                     </div>
@@ -183,7 +190,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                       <AiOutlineMail color="black" />
                       <input
                         {...getFieldProps("email")}
-                        placeholder="Your email"
+                        placeholder={t("c4")}
                         type="text"
                       />
                     </div>
@@ -203,7 +210,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                       <RiMoneyDollarBoxLine color="black" />
                       <input
                         {...getFieldProps("budget")}
-                        placeholder="Your Budget"
+                        placeholder={t("c5")}
                         type="number"
                       />
                     </div>
@@ -216,7 +223,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                       <textarea
                         {...getFieldProps("message")}
                         row={5}
-                        placeholder="..."
+                        placeholder={t("c6")}
                         type="text"
                       />
                     </div>
@@ -233,7 +240,7 @@ export default function Quote({ setmessage, setshowmessage }) {
                         showAnimation == true ? "#4c7ceb" : "white",
                     }}
                   >
-                    {showAnimation == true ? <Loading /> : " Send"}
+                    {showAnimation == true ? <Loading /> : t("c7")}
                   </button>
                 </div>
 

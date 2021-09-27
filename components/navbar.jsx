@@ -9,7 +9,11 @@ import {
   scrollSpy,
   scroller,
 } from "react-scroll";
-export default ({ show, handleClose, handleShow }) => {
+import { Dropdown } from "react-bootstrap";
+import { useTranslation, Trans } from "react-i18next";
+
+export default ({ show, handleClose, handleShow,changeLanguage,language }) => {
+
   return (
     <Navbar collapseOnSelect expand="lg">
       <Navbar.Brand href="#home">
@@ -59,13 +63,23 @@ export default ({ show, handleClose, handleShow }) => {
               How it Works
             </Link>
           </div>
-          <div>
+          <div className="d-flex align-items-center">
             <button
               onClick={handleShow}
               className="btn btn-sign-up fw500 fs18 lh27"
             >
               Create Account
             </button>
+            <Dropdown className="ml-3">
+              <Dropdown.Toggle variant="info" id="dropdown-basic">
+              {language==0?"EN":"DU"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={()=>changeLanguage("en")}>English</Dropdown.Item>
+                <Dropdown.Item onClick={()=>changeLanguage("de")}>Germany</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
       </Navbar.Collapse>

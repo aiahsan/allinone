@@ -15,6 +15,7 @@ import { useMediaQuery } from "react-responsive";
 import Quote from "../components/quote";
 // const bcrypt = require("bcryptjs");
 import { query, where, getDocs } from "firebase/firestore";
+import { useTranslation, Trans } from "react-i18next";
 
 import {
   Link,
@@ -32,6 +33,7 @@ export default function Index() {
   const ismobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
+  const [language,setlanguage]=React.useState(0);
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
@@ -133,6 +135,19 @@ export default function Index() {
       }
     };
   }, []);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = lng => {
+    if(lng=="en")
+    {
+      setlanguage(0)
+    }
+    else
+    {
+      setlanguage(1)
+    }
+    i18n.changeLanguage(lng);
+  };
   return (
     <>
       {showmessage ? (
@@ -166,9 +181,11 @@ export default function Index() {
       <div className="bg">
         <div className="container nav-barcst">
           <NavBar
+          language={language}
             show={show}
             handleClose={handleClose}
             handleShow={handleShow}
+            changeLanguage={changeLanguage}
           />
         </div>
         <Element name="home">
@@ -177,16 +194,15 @@ export default function Index() {
               <div>
                 <Fade top={!ismobile ? true : false} opposite>
                   <h1 className="fw600 fs60 lh90">
-                    Coming Soon -AllinOne App Reimagening Travel
+                  <Trans i18nKey="title">trans</Trans>
+                     
                   </h1>
-                  <h4>Pre-Register and get 250€ off your first booking!</h4>
+                  <h4><Trans i18nKey="pre">trans</Trans></h4>
                 </Fade>
                 <Fade left={!ismobile ? true : false}>
                   <p className="fs16 lh24">
-                    Bespoke Travel is only one click away with the upcoming
-                    AllinOne APP. Be ready for the Adventure of your Lifetime
-                    and on top of that benefit from our Referral System.
-                    Pre-Register now and get 10% off your first booking
+                  <Trans i18nKey="des">trans</Trans>
+                    
                   </p>
                 </Fade>
 
@@ -195,7 +211,7 @@ export default function Index() {
                     onClick={() => setShow(true)}
                     className="btn btn-sign-up fw500 fs18 lh27"
                   >
-                    Pre-Register
+                    <Trans i18nKey="pr">trans</Trans>
                   </button>
                   {/* <button className="btn fs-16 lh27">Pre-Register</button> */}
                   {/* <button className="btn fs-16 lh27">
@@ -217,17 +233,16 @@ export default function Index() {
       </div>
       <Element name="features">
         <section className="container features">
-          <h1 className="fw600 fs50 lh75"> App Features</h1>
+          <h1 className="fw600 fs50 lh75">                     <Trans i18nKey="appf">trans</Trans></h1>
           <div className="flex-between w-100">
             <Fade left={!ismobile ? true : false}>
               <div className="fearture-box">
                 <div className="svg-p bg-svg-1 ">
                   <Icons name="b1" />
                 </div>
-                <h2 className="fw600 fs30 lh45">Booking</h2>
+                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf1">trans</Trans></h2>
                 <p className="fs16 lh24">
-                  Easily make a booking for your favorite hotel, restaurant or
-                  just contact our VIP-Support and get a tailored offer.
+                <Trans i18nKey="appfd1">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -237,10 +252,9 @@ export default function Index() {
                 <div className="svg-p bg-svg-2 ">
                   <Icons name="b2" />
                 </div>
-                <h2 className="fw600 fs30 lh45">Explore</h2>
+                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf2">trans</Trans></h2>
                 <p className="fs16 lh24">
-                  Within the App you will be able to explore activities,
-                  restaurants and the best hotels nearby with just one click.
+                <Trans i18nKey="appfd2">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -249,10 +263,9 @@ export default function Index() {
                 <div className="svg-p bg-svg-3 ">
                   <Icons name="b3" />
                 </div>
-                <h2 className="fw600 fs30 lh45">Customer Support</h2>
+                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf3">trans</Trans></h2>
                 <p className="fs16 lh24">
-                  Our customer support agents are here for you whenever you need
-                  them. Get ready for first class service.
+                <Trans i18nKey="appfd3">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -263,7 +276,7 @@ export default function Index() {
         <section className="container features howitwork">
           <Fade>
             {" "}
-            <h1 className="fw600 fs50 lh75"> How it Works</h1>
+            <h1 className="fw600 fs50 lh75">  <Trans i18nKey="hiw">trans</Trans></h1>
           </Fade>
 
           <div className="d-flex w-100 howitwork-flex ">
@@ -278,13 +291,12 @@ export default function Index() {
                     <Icons name="download" />
                   </div>
                   <div>
-                    <h2 className="fw-500 fs30 lh45">Download the App</h2>
+                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw1">trans</Trans></h2>
                     <div className="btnstores">
                       <button
                         onClick={() => setShow(true)}
                         className="btn btn-sign-up  btn-sign-up1 fw500 fs18 lh27"
-                      >
-                        Pre-Register
+                      ><Trans i18nKey="pr">trans</Trans>
                       </button>
                       {/* <button className="btn fs-16 lh27">Pre-Register</button> */}
                       {/* <button className="btn">
@@ -305,7 +317,7 @@ export default function Index() {
                     <Icons name="ntrip" />
                   </div>
                   <div>
-                    <h2 className="fw-500 fs30 lh45">Find your next trip</h2>
+                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw2">trans</Trans></h2>
                   </div>
                 </div>
               </Fade>
@@ -316,7 +328,7 @@ export default function Index() {
                     <Icons name="card" />
                   </div>
                   <div>
-                    <h2 className="fw-500 fs30 lh45">Book within the App</h2>
+                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw3">trans</Trans></h2>
                   </div>
                 </div>
               </Fade>
@@ -327,7 +339,7 @@ export default function Index() {
                     <Icons name="hour" />
                   </div>
                   <div>
-                    <h2 className="fw-500 fs30 lh45">Enjoy your trip</h2>
+                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw4">trans</Trans></h2>
                   </div>
                 </div>
               </Fade>
@@ -337,7 +349,7 @@ export default function Index() {
 
         <div className="hero">
           <h1 className="fw500 fs60 lh90">
-            Explore Dubai, London, Mykonos, Ibiza{" "}
+           <Trans i18nKey="d1">trans</Trans>
           </h1>
         </div>
       </Element>
@@ -352,14 +364,15 @@ export default function Index() {
                 </div>
 
                 <h2 className="fw600 fs20 lh30">
-                  Easily find your next Hotel, Restaurant and Activity based on
-                  your location
+                <Trans i18nKey="e1">trans</Trans>
+
                 </h2>
               </div>
             </Fade>
             <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
-                <h2 className="fw600 fs20 lh30">Best Price Guarantee </h2>
+                <h2 className="fw600 fs20 lh30">           <Trans i18nKey="e2">trans</Trans>
+ </h2>
                 <Icons name="e1" />
               </div>
             </Fade>
@@ -369,14 +382,14 @@ export default function Index() {
                   <Icons name="e1" />
                 </div>
                 <h2 className="fw600 fs20 lh30">
-                  Available in: Dubai, London, Ibiza
+                <Trans i18nKey="e3">trans</Trans>
                 </h2>
               </div>
             </Fade>
             <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
                 <h2 className="fw600 fs20 lh30">
-                  Refer friends and earn up to 10%{" "}
+                <Trans i18nKey="e4">trans</Trans>
                 </h2>
                 <Icons name="e1" />
               </div>
@@ -415,22 +428,21 @@ export default function Index() {
                 </div>
                 <div className="flex-between flex-column">
                   <h1 className="fw600 fs33 lh54">
-                    Subscribe to stay uptodate and never miss out on exclusive
-                    deals from AllinOne
+                    {t("e1")}
                   </h1>
                   <div className="sb-box flex-between w-100">
                     <div className="flex-between inputbox">
                       <Icons name="mail" />
                       <input
                         {...getFieldProps("email")}
-                        placeholder="Your email"
+                        placeholder={t("e2")}
                         type="text"
                       />
                     </div>
                     <div>
                       {" "}
                       <button type="submit" className="btn fw600 fs17 lh23">
-                        {showAnimation == true ? <Loading /> : " Subscribe"}
+                        {showAnimation == true ? <Loading /> :t("e3")}
                       </button>
                     </div>
                   </div>
