@@ -21,7 +21,7 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
     .required("Required")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
-export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
+export default ({ show, handleClose, handleShow, showAnimation1, adduser,language }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -178,7 +178,7 @@ export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
                           </div>
                         )}
                       </div>
-                      <div className="flex-between flex-column">
+                      {language==0?<div className="flex-between flex-column">
                         <div className="w-100">
                           <div className="flex-between inputbox">
                             <FaUserFriends />
@@ -202,7 +202,7 @@ export default ({ show, handleClose, handleShow, showAnimation1, adduser }) => {
                           </div>
                         )}
                       </div>
-
+:<></>}
                       <div className="flex-between justify-content-center">
                         {" "}
                         <button

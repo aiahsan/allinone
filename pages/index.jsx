@@ -33,7 +33,7 @@ export default function Index() {
   const ismobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
-  const [language,setlanguage]=React.useState(0);
+  const [language,setlanguage]=React.useState(1);
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
@@ -469,6 +469,7 @@ export default function Index() {
         handleShow={handleShow}
         adduser={adduser}
         showAnimation1={showAnimation1}
+        language={language}
       />
     </>
   );

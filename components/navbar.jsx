@@ -72,7 +72,7 @@ export default ({ show, handleClose, handleShow,changeLanguage,language }) => {
             </button>
             <Dropdown className="ml-3">
               <Dropdown.Toggle variant="info" id="dropdown-basic">
-              {language==0?"EN":"DU"}
+              {language==0?"EN":"DE"}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

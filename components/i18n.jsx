@@ -104,7 +104,7 @@ i18n
       },
     },
     fallbackLng: "en",
-    lng: 'en', 
+    lng: 'de', 
     debug: true,
 
     // have a common namespace used around the full app

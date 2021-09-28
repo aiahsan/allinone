@@ -632,7 +632,8 @@ a {
     font-size: 2.6rem !important;
   }
   .logo-nav {
-    width: 50px;
+    width: 44px;
+    margin-right: 7px;
   }
   .navbar-brand img {
     max-width: 148px;
@@ -713,7 +714,12 @@ a {
 @media (max-width: 523px) {
   body .bg {
     padding-bottom: 0px !important;
-    background-image: url("/img/bg-m.jpg");
+
+    background: url('/img/bg-m.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
   .features {
     margin-top: 0%;
@@ -970,4 +976,10 @@ a {
   width: 69.61px;
   height: 37px;
   position: initial !important;
+}
+
+
+.navbar-collapse .dropdown-menu{
+  left: -98px;
+  margin-top: 5px;
 }
