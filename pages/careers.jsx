@@ -16,7 +16,6 @@ import Quote from "../components/quote";
 // const bcrypt = require("bcryptjs");
 import { query, where, getDocs } from "firebase/firestore";
 import { useTranslation, Trans } from "react-i18next";
-import { repository } from '../utiles/repository';
 
 import {
   Link,
@@ -106,14 +105,6 @@ export default function Index() {
         })
           .then((x) => {
             setmessage("User Registerd");
-            try{
-              (async ()=>{
-                await repository.sendEmail({email})
-            })()
-            }
-            catch(e){
-
-            }
             setshowmessage(true);
             setshowAnimation1(false);
             setShow(false);
@@ -240,175 +231,7 @@ export default function Index() {
           </div>
         </Element>
       </div>
-      <Element name="features">
-        <section className="container features">
-          <h1 className="fw600 fs50 lh75">                     <Trans i18nKey="appf">trans</Trans></h1>
-          <div className="flex-between w-100">
-            <Fade left={!ismobile ? true : false}>
-              <div className="fearture-box">
-                <div className="svg-p bg-svg-1 ">
-                  <Icons name="b1" />
-                </div>
-                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf1">trans</Trans></h2>
-                <p className="fs16 lh24">
-                <Trans i18nKey="appfd1">trans</Trans>
-                </p>
-              </div>
-            </Fade>
-
-            <Fade bottom={!ismobile ? true : false}>
-              <div className="fearture-box mr-no-0">
-                <div className="svg-p bg-svg-2 ">
-                  <Icons name="b2" />
-                </div>
-                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf2">trans</Trans></h2>
-                <p className="fs16 lh24">
-                <Trans i18nKey="appfd2">trans</Trans>
-                </p>
-              </div>
-            </Fade>
-            <Fade right={!ismobile ? true : false}>
-              <div className="fearture-box">
-                <div className="svg-p bg-svg-3 ">
-                  <Icons name="b3" />
-                </div>
-                <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf3">trans</Trans></h2>
-                <p className="fs16 lh24">
-                <Trans i18nKey="appfd3">trans</Trans>
-                </p>
-              </div>
-            </Fade>
-          </div>
-        </section>
-      </Element>
-      <Element name="howitwork">
-        <section className="container features howitwork">
-          <Fade>
-            {" "}
-            <h1 className="fw600 fs50 lh75">  <Trans i18nKey="hiw">trans</Trans></h1>
-          </Fade>
-
-          <div className="d-flex w-100 howitwork-flex ">
-            <div className="howitwork-inner">
-              <img src="img/vpng.jpg" className="mx-imgplay w-100" />
-            </div>
-            <div>
-              <Fade left={!ismobile ? true : false}>
-                {" "}
-                <div className="d-flex work-text-box  ">
-                  <div className="mr-20 sm-icon">
-                    <Icons name="download" />
-                  </div>
-                  <div>
-                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw1">trans</Trans></h2>
-                    <div className="btnstores">
-                      <button
-                        onClick={() => setShow(true)}
-                        className="btn btn-sign-up  btn-sign-up1 fw500 fs18 lh27"
-                      ><Trans i18nKey="pr">trans</Trans>
-                      </button>
-                      {/* <button className="btn fs-16 lh27">Pre-Register</button> */}
-                      {/* <button className="btn">
-                        <Icons name="a1" />
-                        Pre-Register
-                      </button>
-                      <button className="btn">
-                        <Icons name="a2" /> Pre-Register
-                      </button> */}
-                    </div>
-                  </div>
-                </div>
-              </Fade>
-              <Fade left={!ismobile ? true : false}>
-                {" "}
-                <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
-                  <div className="mr-20">
-                    <Icons name="ntrip" />
-                  </div>
-                  <div>
-                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw2">trans</Trans></h2>
-                  </div>
-                </div>
-              </Fade>
-              <Fade left={!ismobile ? true : false}>
-                {" "}
-                <div className="d-flex align-items-center work-text-box mt-40 sm-icon">
-                  <div className="mr-20">
-                    <Icons name="card" />
-                  </div>
-                  <div>
-                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw3">trans</Trans></h2>
-                  </div>
-                </div>
-              </Fade>
-              <Fade left={!ismobile ? true : false}>
-                {" "}
-                <div className="d-flex align-items-center work-text-box mt-40 sm-icon ">
-                  <div className="mr-20">
-                    <Icons name="hour" />
-                  </div>
-                  <div>
-                    <h2 className="fw-500 fs30 lh45">  <Trans i18nKey="hiw4">trans</Trans></h2>
-                  </div>
-                </div>
-              </Fade>
-            </div>
-          </div>
-        </section>
-
-        <div className="hero">
-          <h1 className="fw500 fs60 lh90">
-           <Trans i18nKey="d1">trans</Trans>
-          </h1>
-        </div>
-      </Element>
-      <section className="features2">
-        <div className="flex-between">
-          <img className="w-img-cst" src="img/m2.png" />
-          <div className="f-box">
-            <Fade left={!ismobile ? true : false}>
-              <div className="flex-between">
-                <div className="jdkf23">
-                  <Icons name="e1" />
-                </div>
-
-                <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e1">trans</Trans>
-
-                </h2>
-              </div>
-            </Fade>
-            <Fade right={!ismobile ? true : false} opposite delay={800}>
-              <div className="d-flex align-items-center mt-100">
-                <h2 className="fw600 fs20 lh30">           <Trans i18nKey="e2">trans</Trans>
- </h2>
-                <Icons name="e1" />
-              </div>
-            </Fade>
-            <Fade left={!ismobile ? true : false} delay={800}>
-              <div className="flex-between mt-100">
-                <div className="jdkf23">
-                  <Icons name="e1" />
-                </div>
-                <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e3">trans</Trans>
-                </h2>
-              </div>
-            </Fade>
-            <Fade right={!ismobile ? true : false} opposite delay={800}>
-              <div className="d-flex align-items-center mt-100">
-                <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e4">trans</Trans>
-                </h2>
-                <Icons name="e1" />
-              </div>
-            </Fade>
-          </div>
-          <img className="w-img-cst m3img" src="img/m3.png" />
-        </div>
-      </section>
-      <Quote setmessage={setmessage} setshowmessage={setshowmessage} />
-
+    
       <Formik
         initialValues={{
           email: "",

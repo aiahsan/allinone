@@ -251,6 +251,11 @@ a {
   background-size: 100% 96%;
   background-repeat: repeat-x;
 }
+.bg1 {
+  background-image: url("/img/bg-m.jpg");
+  background-size: 100% 96%;
+  background-repeat: repeat-x;
+}
 
 .banner {
   position: relative;
@@ -982,4 +987,26 @@ a {
 .navbar-collapse .dropdown-menu{
   left: -98px;
   margin-top: 5px;
+}
+
+.isjaddreof
+{
+  position: relative;
+  left: 0px;
+}
+.nvaiefsdf
+{
+  position: absolute;
+  background-color: white;
+  width: 300px;
+  padding: 12px;
+  border-radius: 10px;
+  left: -154px;
+}
+.dsofjadf{
+  font-size: 20px;
+  font-weight: 700;
+}
+.ab-boxone h1,.ab-boxone h2,.ab-boxone h3,.ab-boxone h4{
+  margin : 20px 0px;
 }
