@@ -183,6 +183,7 @@ export default function Index() {
             handleClose={handleClose}
             handleShow={handleShow}
             changeLanguage={changeLanguage}
+            isAbout={true}
           />
         </div>
         <Element name="home">
