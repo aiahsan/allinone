@@ -72,11 +72,11 @@ export default ({
     }
     if( specialCase.test(value))
     {
-      setuppercase(true)
+      setspecial(true)
     }
     else
     {
-      setuppercase(false)
+      setspecial(false)
     }
     
     value.length>=8
@@ -208,7 +208,7 @@ export default ({
                           </div>
                         </div>
 
-                        {touched.password && errors.password && (
+                        {touched.password && errors.password &&(
                           <div
                             style={{
                                
