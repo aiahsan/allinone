@@ -15,6 +15,7 @@ import { Formik, Form } from "formik";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import Loading from "../components/loading";
 import { db } from "../util/firebase";
+import { repository } from '../utiles/repository';
 
 import * as Yup from "yup";
 
@@ -33,7 +34,9 @@ export default function Quote({ setmessage, setshowmessage }) {
   const add = async ({ email, interested, name, message, budget }) => {
     setshowAnimation(true);
 
+     
     (async () => {
+     
       const docRef = await addDoc(collection(db, "firstclass"), {
         email,
         interested,
@@ -42,6 +45,10 @@ export default function Quote({ setmessage, setshowmessage }) {
         budget,
       })
         .then((x) => {
+            (async ()=>{
+              await await repository.contact({email,interested,name, message, budget});
+            })()
+
           setmessage("Request submitted");
           setshowmessage(true);
           setshowAnimation(false);
