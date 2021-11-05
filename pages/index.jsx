@@ -17,6 +17,7 @@ import Quote from "../components/quote";
 import { query, where, getDocs } from "firebase/firestore";
 import { useTranslation, Trans } from "react-i18next";
 import { repository } from '../utiles/repository';
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import {
   Link,
@@ -34,7 +35,7 @@ export default function Index() {
   const ismobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
-  const [language,setlanguage]=React.useState(1);
+  const [language, setlanguage] = React.useState(1);
   const [message, setmessage] = React.useState("");
   const [showmessage, setshowmessage] = React.useState(false);
   const [showAnimation, setshowAnimation] = React.useState(false);
@@ -106,12 +107,12 @@ export default function Index() {
         })
           .then((x) => {
             setmessage("User Registerd");
-            try{
-              (async ()=>{
-                await repository.sendEmail({email})
-            })()
+            try {
+              (async () => {
+                await repository.sendEmail({ email })
+              })()
             }
-            catch(e){
+            catch (e) {
 
             }
             setshowmessage(true);
@@ -147,18 +148,19 @@ export default function Index() {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = lng => {
-    if(lng=="en")
-    {
+    if (lng == "en") {
       setlanguage(0)
     }
-    else
-    {
+    else {
       setlanguage(1)
     }
     i18n.changeLanguage(lng);
   };
   return (
     <>
+       
+      
+
       {showmessage ? (
         <Toast
           style={{
@@ -190,7 +192,7 @@ export default function Index() {
       <div className="bg">
         <div className="container nav-barcst">
           <NavBar
-          language={language}
+            language={language}
             show={show}
             handleClose={handleClose}
             handleShow={handleShow}
@@ -203,15 +205,15 @@ export default function Index() {
               <div>
                 <Fade top={!ismobile ? true : false} opposite>
                   <h1 className="fw600 fs60 lh90">
-                  <Trans i18nKey="title">trans</Trans>
-                     
+                    <Trans i18nKey="title">trans</Trans>
+
                   </h1>
                   <h4><Trans i18nKey="pre">trans</Trans></h4>
                 </Fade>
                 <Fade left={!ismobile ? true : false}>
                   <p className="fs16 lh24">
-                  <Trans i18nKey="des">trans</Trans>
-                    
+                    <Trans i18nKey="des">trans</Trans>
+
                   </p>
                 </Fade>
 
@@ -251,7 +253,7 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf1">trans</Trans></h2>
                 <p className="fs16 lh24">
-                <Trans i18nKey="appfd1">trans</Trans>
+                  <Trans i18nKey="appfd1">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -263,7 +265,7 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf2">trans</Trans></h2>
                 <p className="fs16 lh24">
-                <Trans i18nKey="appfd2">trans</Trans>
+                  <Trans i18nKey="appfd2">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -274,7 +276,7 @@ export default function Index() {
                 </div>
                 <h2 className="fw600 fs30 lh45">  <Trans i18nKey="appf3">trans</Trans></h2>
                 <p className="fs16 lh24">
-                <Trans i18nKey="appfd3">trans</Trans>
+                  <Trans i18nKey="appfd3">trans</Trans>
                 </p>
               </div>
             </Fade>
@@ -358,7 +360,7 @@ export default function Index() {
 
         <div className="hero">
           <h1 className="fw500 fs60 lh90">
-           <Trans i18nKey="d1">trans</Trans>
+            <Trans i18nKey="d1">trans</Trans>
           </h1>
         </div>
       </Element>
@@ -373,7 +375,7 @@ export default function Index() {
                 </div>
 
                 <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e1">trans</Trans>
+                  <Trans i18nKey="e1">trans</Trans>
 
                 </h2>
               </div>
@@ -381,7 +383,7 @@ export default function Index() {
             <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
                 <h2 className="fw600 fs20 lh30">           <Trans i18nKey="e2">trans</Trans>
- </h2>
+                </h2>
                 <Icons name="e1" />
               </div>
             </Fade>
@@ -391,14 +393,14 @@ export default function Index() {
                   <Icons name="e1" />
                 </div>
                 <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e3">trans</Trans>
+                  <Trans i18nKey="e3">trans</Trans>
                 </h2>
               </div>
             </Fade>
             <Fade right={!ismobile ? true : false} opposite delay={800}>
               <div className="d-flex align-items-center mt-100">
                 <h2 className="fw600 fs20 lh30">
-                <Trans i18nKey="e4">trans</Trans>
+                  <Trans i18nKey="e4">trans</Trans>
                 </h2>
                 <Icons name="e1" />
               </div>
@@ -451,7 +453,7 @@ export default function Index() {
                     <div>
                       {" "}
                       <button type="submit" className="btn fw600 fs17 lh23">
-                        {showAnimation == true ? <Loading /> :t("e3")}
+                        {showAnimation == true ? <Loading /> : t("e3")}
                       </button>
                     </div>
                   </div>
