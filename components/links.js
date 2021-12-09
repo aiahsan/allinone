@@ -1,13 +1,12 @@
 import { ImArrowUpRight2 } from "react-icons/im";
 export const LinksFooter = [
   [
-    { name: "About", hasSpan: false, span: null, href: "" },
-    { name: "Careers", hasSpan: false, span: null, href: "" },
-    { name: "Mobile", hasSpan: false, span: null, href: "" },
+    { name: "f4", hasSpan: false, span: null, href: "about" },
+    { name: "f5", hasSpan: false, span: null, href: "about" },
   ],
   [
-    { name: "Feature", hasSpan: false, span: null, href: "" },
-    { name: "How it  Works", hasSpan: false, span: null, href: "" },
-    { name: "App Screen", hasSpan: false, span: null, href: "" },
+    { name: "f6", hasSpan: false, span: null, href: "" },
+    { name: "f7", hasSpan: false, span: null, href: "" },
+    { name: "f8", hasSpan: false, span: null, href: "" },
   ],
 ];

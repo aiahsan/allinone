@@ -4,9 +4,15 @@ import { LinksFooter } from "./links";
 import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { SiTwitter } from "react-icons/si";
 import Icons from "../styles/Icons";
-function App() {
-  const [links, setLinks] = React.useState([]);
+import { useTranslation, Trans } from "react-i18next";
 
+function App({ setShow }) {
+  const [links, setLinks] = React.useState([]);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <>
       <div className="footer-part">
@@ -15,13 +21,18 @@ function App() {
             <div className="footer-head">
               <img className="logo-footer" src="img/logo3.png" />
             </div>
-            <FooterLinks links={LinksFooter[0]} heading="Platform" />
-            <FooterLinks links={LinksFooter[1]} heading="Learn" />
+            <FooterLinks links={LinksFooter[0]} heading={t("f1")}/>
+            <FooterLinks links={LinksFooter[1]} heading={t("f2")} />
             <div>
-              <h4 className="foter-sub-head">Download</h4>
+              <h4 className="foter-sub-head">{t("f3")}</h4>
               <div className="footer-sub-area">
                 <div className="work-text-box btnstores flex-column d-flex">
-                  <button className="btn fs-16 lh27">Pre-Register</button>
+                  <button
+                    className="btn fs-16 lh27"
+                    onClick={() => setShow(true)}
+                  >
+                    {t("f9")}
+                  </button>
                   {/* <button className="btn">
                     <Icons name="a1" />
                     Pre-Register
@@ -37,7 +48,7 @@ function App() {
       </div>
       <div className="foot-btmcs ">
         <p className="fs18 lh27">
-          Copyright © 2021 AllinOne. All Rights Reserved.
+        {t("f10")}
         </p>
       </div>
     </>

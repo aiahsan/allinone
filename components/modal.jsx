@@ -1,9 +1,15 @@
 import { Modal } from "react-bootstrap";
+import React from 'react'
 import * as Yup from "yup";
-import { FaUser } from "react-icons/fa";
-import { IoMdMail, IoIosCall } from "react-icons/Io";
+import { FaUser, FaUserFriends } from "react-icons/fa";
+import { IoMdMail, IoIosCall } from "react-icons/io";
 import { Formik, Form } from "formik";
 import { RiKey2Fill } from "react-icons/ri";
+import Loading from "./loading";
+import {TiTick,TiCancel} from 'react-icons/ti'
+import {GiCancel} from 'react-icons/gi'
+import { repository } from '../utiles/repository';
+
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
   email: Yup.string().required("Required").email(),
@@ -19,7 +25,66 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
     .required("Required")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
-export default ({ show, handleClose, handleShow, showAnimation }) => {
+ 
+export default ({
+  show,
+  handleClose,
+  handleShow,
+  showAnimation1,
+  adduser,
+  language,
+}) => {
+
+  const [charLength,setcharLength]=React.useState(false);
+  const [lowercase,setlowercase]=React.useState(false);
+  const [uppercase,setuppercase]=React.useState(false);
+  const [number,setnumber]=React.useState(false);
+  const [special,setspecial]=React.useState(false);
+   
+ const passwordValidate = value => {
+     const regexNum = /\d/;
+    const regexLowercase = /[a-z]/;
+    const regexUppercase = /[A-Z]/;
+    const specialCase = /\W|_/;
+    if(regexLowercase.test(value))
+    {
+       
+     setlowercase(true)
+    }
+    else
+    {
+      setlowercase(false)
+    }
+    if(regexNum.test(value))
+    {
+     setnumber(true)
+    }
+    else
+    {
+      setnumber(false)
+    }
+    if( regexUppercase.test(value))
+    {
+      setuppercase(true)
+    }
+    else
+    {
+      setuppercase(false)
+    }
+    if( specialCase.test(value))
+    {
+      setspecial(true)
+    }
+    else
+    {
+      setspecial(false)
+    }
+    
+    value.length>=8
+      ? setcharLength(true)   
+      :  setcharLength(false)  
+   
+  };
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -28,17 +93,23 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
             <img src="img/logo3.png" />
             <Formik
               initialValues={{
+                name: "",
                 email: "",
+                phone: "",
+                password: "",
+                confirmPassword: "",
+                referral: "",
               }}
               validationSchema={DisplayingErrorMessagesSchema}
               onSubmit={async (values, { setSubmitting }) => {
-                add(values.email);
+                adduser(values);
               }}
             >
               {({
                 errors,
                 touched,
                 getFieldProps,
+                setFieldValue,
                 submitForm,
                 setErrors,
                 handleBlur,
@@ -129,20 +200,59 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                             <input
                               {...getFieldProps("password")}
                               placeholder="Password"
-                              type="text"
+                              type="password"
+                              onChange={(e)=>{
+                                setFieldValue("password",e.target.value)
+                                passwordValidate(e.target.value)
+                              }}
                             />
                           </div>
                         </div>
 
-                        {touched.password && errors.password && (
+                        {touched.password && errors.password &&(
                           <div
                             style={{
-                              color: "red",
+                               
                               marginTop: 10,
                               maxWidth: 320,
                             }}
                           >
-                            {errors.password}
+                             <div className="">
+                              <div className=" " id="message">
+                                <h3 className="dsofjadf">Password must contain the following:</h3>
+                                <p  class="invalid" style={{color:lowercase==true?"green":"red"}}>
+                                
+                                {lowercase==true?<span>{<TiTick color="gren"/>}</span>:<span><GiCancel color="red"/></span> }
+                                  A <b>lowercase</b> letter
+                                </p>
+
+                                <p  class="invalid" style={{color:uppercase==true?"green":"red"}}>
+                                
+                                {uppercase==true?<span>{<TiTick color="gren"/>}</span>:<span><GiCancel color="red"/></span> }
+                                A <b>capital (uppercase)</b> letter
+                                </p>
+                                <p  class="invalid" style={{color:number==true?"green":"red"}}>
+                                
+                                {number==true?<span>{<TiTick color="gren"/>}</span>:<span><GiCancel color="red"/></span> }
+                                A <b>Number</b>
+                                </p>
+                                <p  class="invalid" style={{color:charLength==true?"green":"red"}}>
+                                
+                                {charLength==true?<span>{<TiTick color="gren"/>}</span>:<span><GiCancel color="red"/></span> }
+                                Minimum <b>8 characters</b>
+                                </p>
+
+                                <p  class="invalid" style={{color:special==true?"green":"red"}}>
+                                
+                                {special==true?<span>{<TiTick color="gren"/>}</span>:<span><GiCancel color="red"/></span> }
+                                A <b>special case</b>
+                                </p>
+
+                                 
+                                
+                                
+                              </div>
+                            </div>
                           </div>
                         )}
                       </div>
@@ -154,7 +264,7 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                             <input
                               {...getFieldProps("confirmPassword")}
                               placeholder="Confirm Password"
-                              type="text"
+                              type="password"
                             />
                           </div>
                         </div>
@@ -171,14 +281,48 @@ export default ({ show, handleClose, handleShow, showAnimation }) => {
                           </div>
                         )}
                       </div>
+                      {language == 0 ? (
+                        <div className="flex-between flex-column">
+                          <div className="w-100">
+                            <div className="flex-between inputbox">
+                              <FaUserFriends />
+                              <input
+                                {...getFieldProps("referral")}
+                                placeholder="Referral Name"
+                                type="text"
+                              />
+                            </div>
+                          </div>
 
+                          {touched.referral && errors.referral && (
+                            <div
+                              style={{
+                                color: "red",
+                                marginTop: 10,
+                                maxWidth: 320,
+                              }}
+                            >
+                              {errors.referral}
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                       <div className="flex-between justify-content-center">
                         {" "}
                         <button
-                          onClick={() => submitForm()}
+                         type="submit"
                           className="btn fw600 fs17 lh23"
                         >
-                          {showAnimation == true ? <Loading /> : " Subscribe"}
+                          {showAnimation1 == true ? (
+                            <div style={{ position: "relative", top: -21 }}>
+                              {" "}
+                              <Loading />
+                            </div>
+                          ) : (
+                            " Subscribe"
+                          )}
                         </button>
                       </div>
                     </section>
